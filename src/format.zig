@@ -154,7 +154,7 @@ fn Writer(comptime ChildWriter: type) type {
         }
 
         pub fn emitIndent(self: *Self) !void {
-            try self.child_writer.writeByteNTimes(' ', self.indentation * 4);
+            try self.child_writer.writeByteNTimes(' ', self.indentation * 2);
             if (self.indentation > 0) self.preceded_by_space = true;
         }
 
@@ -400,10 +400,10 @@ test "format statements" {
     try expectFormat(
         \\void main() { int x = 1; int y = 2; }
         \\
-        \\void main() { 
+        \\void main() {
         \\
         \\
-        \\int x = 1; 
+        \\int x = 1;
         \\int y = 2;
         \\
         \\
@@ -471,10 +471,10 @@ test "format operators" {
 test "format assignment" {
     try expectFormat(
         \\void main() {
-        \\int x = 
+        \\int x =
         \\
         \\1+1;
-        \\x = 
+        \\x =
         \\
         \\-1;
         \\}
@@ -503,7 +503,7 @@ test "format multiline infix" {
 test "format call" {
     try expectFormat(
         \\vec4 x = vec4(
-        \\  1,2  
+        \\  1,2
         \\
         \\          ,
         \\              3      ,4,
